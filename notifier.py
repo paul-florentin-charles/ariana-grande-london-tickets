@@ -13,13 +13,6 @@ TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
 TWILIO_PHONE_NUMBER = os.getenv("TWILIO_PHONE_NUMBER")
 RECIPIENT_PHONE_NUMBER = os.getenv("RECIPIENT_PHONE_NUMBER")
 
-# Email Configuration
-EMAIL_HOST = os.getenv("EMAIL_HOST")
-EMAIL_PORT = int(os.getenv("EMAIL_PORT"))
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL")
-
 def send_notification(ticketmaster_url=None, axs_url=None):
     """
     Sends notifications if tickets are available.
@@ -51,6 +44,13 @@ def send_email(subject, body):
         subject (str): The subject of the email.
         body (str): The body of the email.
     """
+    # Email Configuration
+    EMAIL_HOST = os.getenv("EMAIL_HOST")
+    EMAIL_PORT = int(os.getenv("EMAIL_PORT"))
+    EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+    EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+    RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL")
+
     if not all([EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, RECIPIENT_EMAIL]):
         print("Email credentials not configured. Skipping email notification.")
         return
