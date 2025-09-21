@@ -18,9 +18,10 @@ def check_ticketmaster():
                      otherwise (False, None).
     """
     options = webdriver.ChromeOptions()
-    options.add_argument("--headless")
+    options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--window-size=1920,1080")
     options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36')
 
     driver = None
@@ -29,7 +30,7 @@ def check_ticketmaster():
         driver.get(URL)
 
         # Wait for event listings to be present
-        WebDriverWait(driver, 20).until(
+        WebDriverWait(driver, 60).until(
              EC.presence_of_element_located((By.CSS_SELECTOR, "a[data-testid='event-list-link']"))
         )
         time.sleep(2) # allow for dynamic content to load
