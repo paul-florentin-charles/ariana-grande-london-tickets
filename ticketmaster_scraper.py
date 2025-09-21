@@ -29,9 +29,9 @@ def check_ticketmaster():
         driver.get(URL)
 
         # Wait for event listings to be present
-        WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "a[data-testid='event-list-link']"))
-        )
+        # WebDriverWait(driver, 20).until(
+        #     EC.presence_of_element_located((By.CSS_SELECTOR, "a[data-testid='event-list-link']"))
+        # )
         time.sleep(2) # allow for dynamic content to load
 
         event_buttons = driver.find_elements(By.CSS_SELECTOR, "a[data-testid='event-list-link']")
@@ -45,7 +45,7 @@ def check_ticketmaster():
             try:
                 # Navigate to the event page directly
                 driver.get(event_url)
-                time.sleep(3) # Wait for page to load
+                time.sleep(2) # Wait for page to load
 
                 # Check for the 'no results' message
                 page_source = driver.page_source.lower()
